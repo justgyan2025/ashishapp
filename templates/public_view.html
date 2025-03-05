@@ -168,7 +168,7 @@
                 <div class="card p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900">Total Loan Amount</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">कुल मूल लोन राशि</h3>
                             <p class="text-3xl font-bold text-blue-600">₹{{ "{:,.2f}".format(total_loan_amount) }}</p>
                         </div>
                         <div class="bg-blue-100 p-3 rounded-lg">
@@ -182,7 +182,7 @@
                 <div class="card p-6">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900">Total Amount Paid</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">भुगतान की गई कुल राशि</h3>
                             <p class="text-3xl font-bold text-green-600">₹{{ "{:,.2f}".format(total_amount_paid) }}</p>
                         </div>
                         <div class="bg-green-100 p-3 rounded-lg">
@@ -193,15 +193,15 @@
                     </div>
                     <div class="grid grid-cols-3 gap-4 mt-4">
                         <div>
-                            <p class="text-sm text-gray-500">Principal</p>
+                            <p class="text-sm text-gray-500">मूल </p>
                             <p class="text-lg font-semibold text-gray-900">₹{{ "{:,.2f}".format(total_principal_paid) }}</p>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Interest</p>
+                            <p class="text-sm text-gray-500">ब्याज</p>
                             <p class="text-lg font-semibold text-gray-900">₹{{ "{:,.2f}".format(total_interest_paid) }}</p>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Penalties</p>
+                            <p class="text-sm text-gray-500">विलम्ब शुल्क</p>
                             <p class="text-lg font-semibold text-gray-900">₹{{ "{:,.2f}".format(total_penalty_paid) }}</p>
                         </div>
                     </div>
@@ -211,35 +211,36 @@
             <!-- Outstanding Balance -->
             <div class="card">
                 <div class="border-b border-gray-200 p-6">
-                    <h2 class="text-xl font-bold text-gray-900">Outstanding Balance</h2>
+                    <h2 class="text-xl font-bold text-gray-900">बकाया राशि</h2>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
-                                <h3 class="text-lg font-semibold text-gray-900">Principal</h3>
+                                <h3 class="text-lg font-semibold text-gray-900">बकाया मूल राशि</h3>
                                 <p class="text-2xl font-bold text-blue-600">₹{{ "{:,.2f}".format(outstanding_principal) }}</p>
                             </div>
                             <div class="progress-bar">
                                 <div class="h-full bg-blue-600 transition-all duration-500 progress-{{ ((total_principal_paid / total_principal * 100)|round|int if total_principal > 0 else 0)|round(-1)|int }}"></div>
                             </div>
                             <div class="flex justify-between text-sm text-gray-600">
-                                <span>Total: ₹{{ "{:,.2f}".format(total_principal) }}</span>
-                                <span>Paid: ₹{{ "{:,.2f}".format(total_principal_paid) }}</span>
+                                <span>कुल मूल राशि: ₹{{ "{:,.2f}".format(total_principal) }}</span>
+                                <span>मूलधन का भुगतान किया: ₹{{ "{:,.2f}".format(total_principal_paid) }}</span>
                             </div>
                         </div>
 
                         <div class="space-y-4">
                             <div class="flex justify-between items-center">
-                                <h3 class="text-lg font-semibold text-gray-900">Interest</h3>
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    बकाया ब्याज</h3>
                                 <p class="text-2xl font-bold text-green-600">₹{{ "{:,.2f}".format(outstanding_interest) }}</p>
                             </div>
                             <div class="progress-bar">
                                 <div class="h-full bg-green-600 transition-all duration-500 progress-{{ ((total_interest_paid / total_interest * 100)|round|int if total_interest > 0 else 0)|round(-1)|int }}"></div>
                             </div>
                             <div class="flex justify-between text-sm text-gray-600">
-                                <span>Total: ₹{{ "{:,.2f}".format(total_interest) }}</span>
-                                <span>Paid: ₹{{ "{:,.2f}".format(total_interest_paid) }}</span>
+                                <span>कुल ब्याज: ₹{{ "{:,.2f}".format(total_interest) }}</span>
+                                <span>ब्याज का भुगतान किया: ₹{{ "{:,.2f}".format(total_interest_paid) }}</span>
                             </div>
                         </div>
                     </div>
@@ -251,7 +252,7 @@
         <div id="loans" class="view-section">
             <div class="card">
                 <div class="border-b border-gray-200 p-6">
-                    <h2 class="text-xl font-bold text-gray-900">Active Loans</h2>
+                    <h2 class="text-xl font-bold text-gray-900">लोन विवरण</h2>
                 </div>
                 <div class="p-6">
                     <div class="space-y-6">
@@ -260,19 +261,19 @@
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                                     <div>
-                                        <p class="text-sm text-gray-500">Loan Amount</p>
+                                        <p class="text-sm text-gray-500">कुल लोन राशि</p>
                                         <p class="text-lg font-bold text-gray-900">₹{{ "{:,.2f}".format(loan[1]|float) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Interest Rate</p>
+                                        <p class="text-sm text-gray-500">ब्याज दर</p>
                                         <p class="text-lg font-bold text-gray-900">{{ loan[2] }}%</p>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Remaining Tenure</p>
-                                        <p class="text-lg font-bold text-gray-900">{{ loan[4] }} months</p>
+                                        <p class="text-sm text-gray-500">अवधि</p>
+                                        <p class="text-lg font-bold text-gray-900">{{ loan[4] }} महीने</p>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-gray-500">Monthly EMI</p>
+                                        <p class="text-sm text-gray-500">मासिक EMI</p>
                                         {% set monthly_principal = loan[1]|float / loan[4]|float %}
                                         {% set monthly_interest = (loan[1]|float * (loan[2]|float / 100)) / 12 %}
                                         {% set monthly_emi = monthly_principal + monthly_interest %}
@@ -281,11 +282,11 @@
                                 </div>
                                 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div class="bg-white rounded-lg p-4 border border-gray-200">
-                                        <p class="text-sm text-gray-500 mb-2">Monthly Principal</p>
+                                        <p class="text-sm text-gray-500 mb-2">मासिक मूल</p>
                                         <p class="text-lg font-bold text-blue-600">₹{{ "{:,.2f}".format(monthly_principal) }}</p>
                                     </div>
                                     <div class="bg-white rounded-lg p-4 border border-gray-200">
-                                        <p class="text-sm text-gray-500 mb-2">Monthly Interest</p>
+                                        <p class="text-sm text-gray-500 mb-2">मासिक ब्याज</p>
                                         <p class="text-lg font-bold text-green-600">₹{{ "{:,.2f}".format(monthly_interest) }}</p>
                                     </div>
                                 </div>
@@ -301,7 +302,7 @@
         <div id="payments" class="view-section">
             <div class="card">
                 <div class="border-b border-gray-200 p-6">
-                    <h2 class="text-xl font-bold text-gray-900">Payment History</h2>
+                    <h2 class="text-xl font-bold text-gray-900">भुगतान विवरण</h2>
                     
                     <!-- Toggle View Buttons -->
                     <div class="flex gap-2 mt-4">
@@ -326,11 +327,11 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead>
                                         <tr>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Principal</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Interest</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Penalty</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">तारीख</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">मूल</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ब्याज</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">विलम्ब शुल्क</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">कुल</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
@@ -376,19 +377,19 @@
                                     </div>
                                     <div class="grid grid-cols-3 gap-4">
                                         <div>
-                                            <p class="text-sm text-gray-500">Principal</p>
+                                            <p class="text-sm text-gray-500">मूल</p>
                                             <p class="text-base font-semibold text-blue-600">
                                                 ₹{{ "{:,.2f}".format(payment[4]|float) }}
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-gray-500">Interest</p>
+                                            <p class="text-sm text-gray-500">ब्याज</p>
                                             <p class="text-base font-semibold text-green-600">
                                                 ₹{{ "{:,.2f}".format(payment[5]|float) }}
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-gray-500">Penalty</p>
+                                            <p class="text-sm text-gray-500">विलम्ब शुल्क</p>
                                             <p class="text-base font-semibold text-red-600">
                                                 ₹{{ "{:,.2f}".format(payment[6]|float) }}
                                             </p>
@@ -401,7 +402,7 @@
                         </div>
                     {% else %}
                         <div class="text-center py-8 text-gray-500">
-                            No payment history found
+                            कोई भुगतान नहीं मिला
                         </div>
                     {% endif %}
                 </div>
